@@ -14,9 +14,42 @@ class App extends React.Component {
     });
   }
 
-  onKeyDown() {
-    
+  onSearchClick(query){
+    var getParams = {
+      query: query,
+      max: 5,
+      key: window.YOUTUBE_API_KEY
+    }
+    getVideoData(getParams);
+  
   }
+
+  getVideoData(getParams) {
+    window.searchYouTube(getParams, (data) => {
+      this.setState({
+        vidList: data
+      });
+    }.bind(this));    
+  }
+  
+  onSearchKeyDown(query){
+    var getParams = {
+      query: query,
+      max: 5,
+      key: window.YOUTUBE_API_KEY
+    }
+
+    window.searchYouTube(getParams, (data) => {
+      this.setState({
+        vidList: data
+      });
+    }.bind(this));  
+  }
+
+
+  // onKeyDown() {
+    
+  // }
 
   componentDidMount() {
     var getParams = {
@@ -36,7 +69,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Nav />
+        <Nav searchClick={this.onSearchClick.bind(this)} keyDownSeach={this./>
         <div className="col-md-7">
           <VideoPlayer selectedVid={this.state.selectedVid}/>
         </div>
