@@ -9,9 +9,20 @@ class App extends React.Component {
   }
 
   onTitleClick(selectedVid) {
-    this.setState({
-      selectedVid: selectedVid
+    var selectedVideo;
+    console.log('before', selectedVid)
+    window.getVideoStats(selectedVid, (data) => {
+      // console.log('datadatadata ', data);
+      this.setState({
+        selectedVid:data[0]
+      })
+      // console.log('after ', selectedVideo);
     });
+    // console.log('this ', this)
+    // this.setState({
+    //   selectedVid: selectedVid
+    // });
+    // console.log('this ', this)
   }
 
   onSearchClick(query){

@@ -6,7 +6,7 @@ var searchYouTube = (options, callback) => {
            'key': options.key, 'maxResults': options.max,
             'videoEmbeddable': true, 'type': 'video'},
     dataType: 'json',  
-    success: (data) => {
+    success: (data) => {  
       console.log(data);
       callback(data.items);
     },
