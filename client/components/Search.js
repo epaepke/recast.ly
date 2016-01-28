@@ -5,6 +5,7 @@ class Search extends React.Component {
   constructor(props) {
     super(props);
     this.searchClick = props.searchClick;
+    this.keyDownSearch = props.keyDownSearch;
   }
 
   buttonClickHandler() {
@@ -14,7 +15,7 @@ class Search extends React.Component {
   }
 
   keyDownHandler() {
-    this.searchKeyDown(this.refs.searchQ.value);
+    this.keyDownSearch(this.refs.searchQ.value);
   }
 
   render() {

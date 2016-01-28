@@ -17,10 +17,10 @@ class App extends React.Component {
   onSearchClick(query){
     var getParams = {
       query: query,
-      max: 5,
+      max: 10,
       key: window.YOUTUBE_API_KEY
     }
-    getVideoData(getParams);
+    this.getVideoData(getParams);
   
   }
 
@@ -31,13 +31,14 @@ class App extends React.Component {
       });
     }.bind(this));    
   }
-  
+
   onSearchKeyDown(query){
     var getParams = {
       query: query,
-      max: 5,
+      max: 10,
       key: window.YOUTUBE_API_KEY
     }
+    this.getVideoData(getParams);
 
     window.searchYouTube(getParams, (data) => {
       this.setState({
@@ -45,11 +46,6 @@ class App extends React.Component {
       });
     }.bind(this));  
   }
-
-
-  // onKeyDown() {
-    
-  // }
 
   componentDidMount() {
     var getParams = {
@@ -69,7 +65,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Nav searchClick={this.onSearchClick.bind(this)} keyDownSeach={this./>
+        <Nav searchClick={this.onSearchClick.bind(this)} keyDownSearch={this.onSearchKeyDown.bind(this)}/>
         <div className="col-md-7">
           <VideoPlayer selectedVid={this.state.selectedVid}/>
         </div>
