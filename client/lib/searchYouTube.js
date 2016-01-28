@@ -7,8 +7,8 @@ var searchYouTube = (options, callback) => {
             'videoEmbeddable': true, 'type': 'video'},
     dataType: 'json',  
     success: (data) => {
-      callback(data);
-      console.log('Get success');
+      console.log(data);
+      callback(data.items);
     },
     error: () => {
       console.log('Failed get');

@@ -14,6 +14,21 @@ class App extends React.Component {
     });
   }
 
+  componentDidMount() {
+    var getParams = {
+      query: "",
+      max: 5,
+      key: window.YOUTUBE_API_KEY
+    }
+
+    window.searchYouTube(getParams, (data) => {
+      this.setState({
+        vidList: data,
+        selectedVid: data[0]
+      });
+    }.bind(this));  
+  }
+
   render() {
     return (
       <div>
