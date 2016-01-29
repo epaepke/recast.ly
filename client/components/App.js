@@ -1,38 +1,41 @@
 class App extends React.Component {
   constructor(props) {
     super(props);
-    // window.copy = this;
     this.state = {
       vidList: window.exampleVideoData,
-      selectedVid: window.exampleVideoData[0]
-    }
+      selectedVid: window.exampleVideoData[0],
+      selectedVidData: ""
+    };
   }
 
   onTitleClick(selectedVid) {
-    var selectedVideo;
-    console.log('before', selectedVid)
     window.getVideoStats(selectedVid, (data) => {
-      // console.log('datadatadata ', data);
+      this.state.selectedvidData = data[0].statistics.viewCount;
       this.setState({
-        selectedVid:data[0]
-      })
-      // console.log('after ', selectedVideo);
+        selectedVidData: data[0].statistics.viewCount
+      });
     });
-    // console.log('this ', this)
-    // this.setState({
-    //   selectedVid: selectedVid
-    // });
-    // console.log('this ', this)
+
+    this.setState({
+      selectedVid: selectedVid
+    });
   }
+
+  
+  //
+
+
+
+  //
+
 
   onSearchClick(query){
     var getParams = {
       query: query,
       max: 10,
       key: window.YOUTUBE_API_KEY
-    }
+    };
     this.getVideoData(getParams);
-  
   }
 
   getVideoData(getParams) {
@@ -55,7 +58,7 @@ class App extends React.Component {
       this.setState({
         vidList: data
       });
-    }.bind(this));  
+    });  
   }
 
   componentDidMount() {
@@ -70,7 +73,7 @@ class App extends React.Component {
         vidList: data,
         selectedVid: data[0]
       });
-    }.bind(this));  
+    });  
   }
 
   render() {
@@ -78,10 +81,10 @@ class App extends React.Component {
       <div>
         <Nav searchClick={this.onSearchClick.bind(this)} keyDownSearch={this.onSearchKeyDown.bind(this)}/>
         <div className="col-md-7">
-          <VideoPlayer selectedVid={this.state.selectedVid}/>
+          <VideoPlayer selectedVid={this.state.selectedVid} selectedVidData={this.state.selectedVidData}/>
         </div>
         <div className="col-md-5">
-          <VideoList vidList={this.state.vidList}  clickHandler={this.onTitleClick.bind(this)}/>
+          <VideoList vidList={this.state.vidList} clickHandler={this.onTitleClick.bind(this)}/>
         </div>
       </div>
     );
@@ -92,12 +95,3 @@ ReactDOM.render(
   <App />,
   document.getElementById('app')
 );
-
-
-    // var currVid;
-    // this.state.vidList.forEach( vid => {
-    //     if (this.state.selectedVid.id.videoId === vid.id.videoId) {
-    //       currVid = vid;
-    //     }
-    //   }
-    // )

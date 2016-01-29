@@ -1,8 +1,21 @@
 var VideoPlayer = (props) =>  {
 
-console.log('id   ', props.selectedVid.id)
-if (props.selectedVid.id.videoId) {
+console.log('Video player props',props.selectedVid);
+
+console.log('================================')
+console.log(typeof props.selectedVid.id)
+console.log('================================')
+
+if (typeof props.selectedVid.id === "object") {
+  console.log("why are u an object?", props.selectedVid.id)
+  console.log("what is ur type?", typeof props.selectedVid.id)
+  // console.log("props selected Vid ", props.selectedVid.id)
+  // console.log("props before edited ", props)
   props.selectedVid.id = props.selectedVid.id.videoId;
+
+  console.log("2why are u an object?", props.selectedVid.id)
+  console.log("2what is ur type?", typeof props.selectedVid.id)
+  // console.log("props after edited ", props)
 }
 return (
   <div className="video-player">
@@ -12,7 +25,7 @@ return (
     <div className="video-player-details">
       <h3>{props.selectedVid.snippet.title || 'No Video Loaded'}</h3>
       <div>{props.selectedVid.snippet.description}</div>
-      <VideoDetails selectedVid={props.selectedVid}/>
+      <VideoDetails selectedVid={props.selectedVid} selectedVidData={props.selectedVidData}/>
     </div>
   </div>
 );
