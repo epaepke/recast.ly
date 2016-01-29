@@ -57,7 +57,7 @@ class App extends React.Component {
   componentDidMount() {
     var getParams = {
       query: "",
-      max: 5,
+      max: 10,
       key: window.YOUTUBE_API_KEY
     };
 
@@ -81,7 +81,7 @@ class App extends React.Component {
         <div className="col-md-7">
           <VideoPlayer selectedVid={this.state.selectedVid} selectedVidData={this.state.selectedVidData}/>
         </div>
-        <div className="col-md-5">
+        <div className="col-md-4">
           <VideoList vidList={this.state.vidList} clickHandler={this.onTitleClick.bind(this)}/>
         </div>
       </div>

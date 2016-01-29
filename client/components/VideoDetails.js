@@ -1,7 +1,7 @@
 var VideoDetails = (props) => {
   return ( 
     <div>
-      <p><span className="glyphicons glyphicons-signal"></span>{"View Count: " + props.selectedVidData}</p>
+      <p><span className="viewCount"></span>{"View Count: " + props.selectedVidData}</p>
     </div>
   )
 }

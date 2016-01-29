@@ -71,6 +71,6 @@ body {
   color: #999;
 }
 
-.glyphicons .glyphicons-play {
-  
+.viewCount { 
+  text-align: right
 }
