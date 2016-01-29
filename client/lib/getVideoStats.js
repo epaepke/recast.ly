@@ -1,13 +1,11 @@
-var getVideoStats = (selectedVid, callback) => {
-  console.log('selectedVid1-2 ', selectedVid)
+var getVideoStats = (selectedVidId, callback) => {
   $.ajax({
     type: 'GET',
     url: 'https://www.googleapis.com/youtube/v3/videos',
-    data: {'part': 'statistics','key': window.YOUTUBE_API_KEY,
-            'id': selectedVid.id},
+    data: {'part': 'statistics','id': selectedVidId, 
+            'key': window.YOUTUBE_API_KEY,},
     dataType: 'json',  
     success: (data) => {
-      console.log('fetch data ', data);
       callback(data.items);
     },
     error: () => {
